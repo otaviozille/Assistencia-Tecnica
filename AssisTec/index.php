@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AssisTec</title>
+    <!--2-->
     <link rel="stylesheet" href="/Assist-ncia-T-cnica/AssisTec/style.css">
+    <!--3-->
     <link rel="shortcut icon" type="imge/x-icon" href="/Assist-ncia-T-cnica/AssisTec/img/icone.png">
 </head>
 <body>
@@ -12,7 +14,10 @@
     <!--Criar as divs de Login-->
     <div class= "Login">
         <div class="form">
-            <form action="">
+            <!--3-->
+            <img src=".img/login.png" class="imagem">
+            <!--4-->
+            <form action="autenticar.php" method="post">
     <!--2-->
     <!--Criar os input de login-->
     <input type="email" name="usuario"  placeholder="Digite seu email" required>
