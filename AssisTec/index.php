@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AssisTec</title>
+    <link rel="stylesheet" href="/Assist-ncia-T-cnica/AssisTec/style.css">
+    <link rel="shortcut icon" type="imge/x-icon" href="/Assist-ncia-T-cnica/AssisTec/img/icone.png">
 </head>
 <body>
     <!--1-->
-    <!--Criar as div´s de Login-->
-    <div class="Login">
+    <!--Criar as divs de Login-->
+    <div class= "Login">
         <div class="form">
             <form action="">
     <!--2-->

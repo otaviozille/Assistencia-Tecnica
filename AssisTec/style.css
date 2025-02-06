@@ -1,11 +1,17 @@
-body{
+body, html{
     background-color: black;
+   height: 100%;
+   margin: 0;
+   justify-content: center;
+   align-items: center;
+   display: flex;
 }
 
 .login{
     width: 360px;
     margin: auto;
     padding: 0% 0 0 0;
+  
 }
 
 .form{
@@ -17,4 +23,35 @@ body{
     padding: 20px 45px 45px 45px;
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2 );
+
+}
+
+.form input{
+    font-family: Verdana, Tahoma, sans-serif;
+    outline: 0;
+    background: black;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    
+}
+
+.form button{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: black;
+    width: 100%;
+    border: 0;
+    color: aliceblue;
+    padding: 15px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.form button:hover , .form button:active, .form button:focus {
+    background: black;
 }
