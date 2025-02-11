@@ -1,24 +1,12 @@
 <?php
-//5
+$servidor = "localhost";
+$usuario = "root";
+$senha = "";
+$banco = "assistencia_tecnica";
 
-//variaveis para conexao local
+$conexao = new mysqli($servidor, $usuario, $senha, $banco);
 
-$servidor = 'localhost';
-$banco = 'assistec';
-$usuario = 'root';
-$senha = '';
-
-//tratar erros com o banco de dados
-
-try {
-    //Criar conexao com o banco de dados utilizando as variaveis
-    $pdo = new PDO("mysql:host=$servidor;dbname=$banco;charset =utf8", "$usuario", "$senha");
-} catch (Exception $e) {
-    echo 'Erro ao conectar com o banco de dados';
-    echo '<br>';
-    echo $e;
+if ($conexao->connect_error) {
+    die("Falha na conexão: " . $conexao->connect_error);
 }
-
-
-
 ?>

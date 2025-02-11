@@ -1,54 +1,38 @@
-<?php 
-//6
-// Validar usuário e senha para efertuar login no sistema
+<?php
+session_start();
+include("conexao.php");
 
-// Conectar ao banco de dados
-require_once("conexao.php")
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST["email"];
+    $senha = $_POST["senha"];
 
-// Criar variáveis locais para receber o que foi
-// Digitado nos INPUT´s: usuári e senha no index.php
-$usuario = $_POST ['usuario'];
-$senha = $_POST ['senha'];
+    $sql = "SELECT id, nome, senha, nivel FROM usuarios WHERE email = ?";
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
 
-// Criar a query de consulta ao banco  de dados para 
-// verificar se o usuario esta cadastrado e se a senha está correta
-$query = $pdo->query("SELECT * from usuarios where
-emailUsuario = '$usuario' and senhaUsuario = '$senha' ");
+    if ($resultado->num_rows > 0) {
+        $usuario = $resultado->fetch_assoc();
 
-// Criar uma variável para armazenar o resultado da query
-$result=$query->fetchAll(PDO::FETCH_ASSOC);
+        if (password_verify($senha, $usuario["senha"])) {
+            $_SESSION["id"] = $usuario["id"];
+            $_SESSION["nome"] = $usuario["nome"];
+            $_SESSION["nivel"] = $usuario["nivel"];
 
-//Teste:
-// Verificar o result para ver se está correto
-$linha = @count($result);
-// echo $linha
-
-//Verificar se tem autentificação
-if($linha > 0){
-   $_SESSION [$nome] = $result[0]['nomeUsuario'];
-   $_SESSION [$id]= $result[0]['idUsuario'];
-   $_SESSION [$nivel] = $result[0]['nivelUsuario'];
-
-   // Direcionar para a Tela de sistema: ./painel/ibdex.php
-   echo '<script>window.locatin= "painel"</script>';
-
+            if ($usuario["nivel"] == "admin") {
+                header("Location: admin_dashboard.php");
+            } elseif ($usuario["nivel"] == "funcionario") {
+                header("Location: funcionario_dashboard.php");
+            } else {
+                header("Location: cliente_dashboard.php");
+            }
+            exit();
+        } else {
+            echo "Senha incorreta!";
+        }
+    } else {
+        echo "Usuário não encontrado!";
+    }
 }
-
-else{
-    echo '<script>window.alert("Usuario e/ou Senha Incorretos")</script>';
-    echo '<script>window.locatin= "index.php"</script>';
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
