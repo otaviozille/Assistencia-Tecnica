@@ -1,38 +1,29 @@
 <?php
-session_start();
-include("conexao.php");
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST["email"];
-    $senha = $_POST["senha"];
+    //criar sessão de conxeão
+@session_start();
 
-    $sql = "SELECT id, nome, senha, nivel FROM usuarios WHERE email = ?";
-    $stmt = $conexao->prepare($sql);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $resultado = $stmt->get_result();
+    // conectar banco de dados
+ require_once("conexao.php");
 
-    if ($resultado->num_rows > 0) {
-        $usuario = $resultado->fetch_assoc();
+    //criação variaveis locais
 
-        if (password_verify($senha, $usuario["senha"])) {
-            $_SESSION["id"] = $usuario["id"];
-            $_SESSION["nome"] = $usuario["nome"];
-            $_SESSION["nivel"] = $usuario["nivel"];
+ $usuario = $_POST['email'];
+ $senha = $_POST['senha'];
 
-            if ($usuario["nivel"] == "admin") {
-                header("Location: admin_dashboard.php");
-            } elseif ($usuario["nivel"] == "funcionario") {
-                header("Location: funcionario_dashboard.php");
-            } else {
-                header("Location: cliente_dashboard.php");
-            }
-            exit();
-        } else {
-            echo "Senha incorreta!";
-        }
-    } else {
-        echo "Usuário não encontrado!";
-    }
+    //criação da query
+ $query = $pdo->query("SELECT * FROM usuarios where emailUsuario = '$usuario' and senhaUsuario = '$senha'");
+
+    //criação variavel que irá receber o resultado da query
+$result = $query->fetchAll(PDO::FETCH_ASSOC);
+    //verificação se o resultado da query é maior que 0
+$linha = @count($result);    
+    //verificar se houve autenticação
+if($linha > 0){
+    $nome = $result[0]['nomeUsuario'];
+    $id = $result[0]['idUsuario'];
+    $nivel = $result[0]['nivelUsuario'];
+    echo $nome;
 }
+
 ?>

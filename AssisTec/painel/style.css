@@ -133,3 +133,27 @@ body {
     flex: 1;
     text-align: center;
 }
+
+.grafico {
+    max-width: 300px;
+    max-height: 300px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+.graficos {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espaçamento entre os gráficos */
+    flex-wrap: wrap; /* Garante que fiquem lado a lado, mas quebram linha em telas pequenas */
+}
+
+.grafico {
+    max-width: 300px;
+    max-height: 300px;
+    width: 100%;
+    height: auto;
+}
+

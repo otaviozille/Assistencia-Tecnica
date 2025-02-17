@@ -2,11 +2,13 @@
 $servidor = "localhost";
 $usuario = "root";
 $senha = "";
-$banco = "assistencia_tecnica";
+$banco = "assistec";
 
-$conexao = new mysqli($servidor, $usuario, $senha, $banco);
-
-if ($conexao->connect_error) {
-    die("Falha na conexão: " . $conexao->connect_error);
+try {
+    $pdo = new PDO("mysql:host=$servidor;dbname=$banco;charset=utf8", "$usuario", "$senha");
+} catch (PDOException $e) {
+    echo "Erro ao conectar ao banco de dados";
+    echo '<br>';
+    echo $e->getMessage();
 }
 ?>
