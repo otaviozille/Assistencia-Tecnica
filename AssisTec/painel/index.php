@@ -36,6 +36,7 @@ require_once("verificar.php");
             <button id="toggleMode">🌙</button>
         </div>
     </header>
+   
 
     <!-- Conteúdo Principal -->
     <main class="content">
@@ -43,8 +44,8 @@ require_once("verificar.php");
         <h1>Dashboard</h1>
         <div class="cards">
             <div class="card">💰 Vendas: R$ 10.000</div>
-            <div class="card">👤 Usuários: 500</div>
-            <div class="card">📊 Relatórios: 15</div>
+            <div class="card">👤 Usuários: </div>
+            <div class="card">📊 Relatórios: </div>
         </div>
         <div class="container">
             <h2>Gráficos de Estatísticas</h2>
@@ -53,10 +54,7 @@ require_once("verificar.php");
                 <canvas id="graficoUsuarios" class="grafico"></canvas>
             </div>
         </div>
-        
-        
     </main>
-
     <script src="/AssisTec/painel/script.js"></script>
 </body>
 </html>
