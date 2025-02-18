@@ -1,13 +1,8 @@
 <?php
+session_start();
 
-@session_start();
-
-if($_SESSION['id'] == "")
-{
-    
-    echo "<script>window.location.href = '../'</script>";
+if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
+    header("Location: ../index.php");
     exit();
-
 }
-
 ?>
