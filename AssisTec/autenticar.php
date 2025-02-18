@@ -19,11 +19,22 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
     //verificação se o resultado da query é maior que 0
 $linha = @count($result);    
     //verificar se houve autenticação
-if($linha > 0){
+if($linha > 0)
+{
+
     $nome = $result[0]['nomeUsuario'];
     $id = $result[0]['idUsuario'];
     $nivel = $result[0]['nivelUsuario'];
-    echo $nome;
+    
+    echo "<script>window.location.href = 'painel/index.php'</script>";
+
+}
+else
+{
+
+    echo "<script>window.alert('Usuário ou senha incorretos!')</script>";
+    echo "<script>window.location.href = 'index.php'</script>";
+    
 }
 
 ?>

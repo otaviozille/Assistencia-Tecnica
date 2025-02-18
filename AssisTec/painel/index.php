@@ -1,11 +1,17 @@
+<?php
 
+//@session_start();
+
+require_once("verificar.php");
+
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel Admin</title>
-    <link rel="stylesheet" href="/AssisTec/painel/style.css">
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -17,7 +23,7 @@
             <li><a href="/AssisTec/painel/index.html">🏠 Home</a></li>
             <li><a href="/AssisTec/painel/pages/usuario.html">👤 Usuários</a></li>
             <li><a href="/AssisTec/painel/pages/relatorio.html">📊 Relatórios</a></li>
-            <li><a href="/AssisTec/painel/pages/config.html">⚙️ Configurações</a></li>
+            <li><a href="logout.php">sair</a></li>
         </ul>
     </nav>
 
