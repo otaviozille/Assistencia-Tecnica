@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Verifica se o usuário já escolheu um tema anteriormente
     if (localStorage.getItem("theme") === "dark") {
         body.classList.add("dark-mode");
-        toggleButton.textContent = "☀️ Modo Claro";
+        toggleButton.textContent = "☀️";
     }
 
     // Alterna entre os modos
@@ -63,10 +63,10 @@ document.addEventListener("DOMContentLoaded", function() {
         // Salva a preferência do usuário
         if (body.classList.contains("dark-mode")) {
             localStorage.setItem("theme", "dark");
-            toggleButton.textContent = "☀️ Modo Claro";
+            toggleButton.textContent = "☀️";
         } else {
             localStorage.setItem("theme", "light");
-            toggleButton.textContent = "🌙 Modo Escuro";
+            toggleButton.textContent = "🌙";
         }
     });
 });
