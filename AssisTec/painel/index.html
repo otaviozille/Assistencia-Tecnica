@@ -11,26 +11,31 @@ require_once("verificar.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel Admin</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/AssisTec/painel/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
+
     <!-- Sidebar (Menu Lateral) -->
-    <nav class="sidebar">
+    <nav class="sidebar" id="sidebar">
+         
         <h2>Sistema</h2>
         <ul>
             <li><a href="/AssisTec/painel/index.html">🏠 Home</a></li>
             <li><a href="/AssisTec/painel/pages/usuario.html">👤 Usuários</a></li>
             <li><a href="/AssisTec/painel/pages/relatorio.html">📊 Relatórios</a></li>
-            <li><a href="logout.php">sair</a></li>
+            <li><a href="/AssisTec/painel/logout.php">🚪 Sair</a></li>
         </ul>
     </nav>
 
     <!-- Navbar (Barra Superior) -->
     <header class="navbar">
-        <input type="text" placeholder="🔍 Pesquisar...">
+        <button id="toggleSidebar">☰ </button> <!-- Botão para mostrar/esconder a sidebar -->
+       
+
         <div class="icons">
+            <input type="text" placeholder="🔍 Pesquisar...">
             <span>🔔</span>
             <span>👤 Nome Usuário</span>
             <button id="toggleMode">🌙</button>
@@ -43,12 +48,16 @@ require_once("verificar.php");
 
         <h1>Dashboard</h1>
         <div class="cards">
-            <div class="card">💰 Vendas: R$ 10.000</div>
-            <div class="card">👤 Usuários: </div>
-            <div class="card">📊 Relatórios: </div>
+            <div class="card">💰 Vendas: R$ 0</div>
+            <div class="card">🧾 Despesas: R$ 0 </div>
+            <div class="card">📊 Gastos: R$ 0 </div>
+            <div class="card">👤  Total de Usuarios:0 </div>
         </div>
+        <br>
+    <button id="atualizarDados">Atualizar Dados</button> <!-- Botão para atualizar os dados -->
+        <br><br>
         <div class="container">
-            <h2>Gráficos de Estatísticas</h2>
+            <h1>Gráficos de Estatísticas</h1>
             <div class="graficos">
                 <canvas id="graficoVendas" class="grafico"></canvas>
                 <canvas id="graficoUsuarios" class="grafico"></canvas>

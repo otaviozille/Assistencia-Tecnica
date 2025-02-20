@@ -15,12 +15,13 @@ if (isset($_SESSION["id"])) {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <div class="login">
         <form class="form" action="autenticar.php" method="post">
             <img src="./img/login.png" alt="Logo" class="imagem">
             <input type="email" name="email" placeholder="E-mail" required>
             <input type="password" name="senha" placeholder="Senha" required>
-            <button type="submit">Entrar</button>
+            <button onclick="window.location.href='/AssisTec/painel/index.html'" type="submit">Entrar</button>
         </form>
     </div>
 </body>

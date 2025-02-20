@@ -1,8 +1,7 @@
 <?php
 session_start();
-session_destroy();
-
-    echo "<script>window.location.href = '../'</script>";
-
-
+if (isset($_SESSION["id"])) {
+    header("Location: dashboard.php");
+    exit();
+}
 ?>

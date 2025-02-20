@@ -8,7 +8,7 @@
 
 /* Modo Claro (Padrão) */
 :root {
-    --bg-color: #f4f4f4;
+    --bg-color: #e9e4e4;
     --text-color: #222;
     --sidebar-bg: #333;
     --sidebar-text: white;
@@ -53,35 +53,42 @@ body {
 }
 
 /* Sidebar (Menu Lateral) */
+#toggleSidebar {
+    margin: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #9e9292;
+}
 .sidebar {
     width: 250px;
-    height: 100vh;
-    background: #333;
+    background-color: #333;
     color: white;
-    padding: 20px;
     position: fixed;
-    top: 0;
-    left: 0;
+    left: -250px; /* Esconde a sidebar inicialmente */
+    transition: left 0.3s ease; /* Animação suave */
+    height: 100%;
+    padding: 20px;
+   
 }
 
-.sidebar h2 {
-    margin-bottom: 20px;
+
+
+.sidebar.active {
+    left: 0; /* Mostra a sidebar quando ativa */
 }
 
 .sidebar ul {
-    list-style: none;
+    list-style-type: none;
+    padding: 0;
 }
 
 .sidebar ul li {
     margin: 15px 0;
 }
 
-.sidebar a {
+.sidebar ul li a {
     color: white;
     text-decoration: none;
-    display: block;
-    padding: 10px;
-    border-radius: 5px;
 }
 
 .sidebar a:hover {
@@ -155,4 +162,13 @@ body {
     max-height: 300px;
     width: 100%;
     height: auto;
+}
+
+/*Atualizar dados*/
+#atualizarDados {
+    margin: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #3f3c3c;
+   
 }
