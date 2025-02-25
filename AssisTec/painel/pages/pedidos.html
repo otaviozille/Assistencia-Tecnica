@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <h2>Sistema</h2>
+        <ul>
+            <li><a href="/AssisTec/painel/index.html">🏠 Home</a></li>
+            <li><a href="/AssisTec/painel/pages/usuario.html">👤 Usuários</a></li>
+            <li><a href="/AssisTec/painel/pages/relatorio.html">📊 Relatórios</a></li>
+            <li><a href="/AssisTec/painel/pages/pedidos.html">⚙️ Configurações</a></li>
+        </ul>
+    </nav>
+
+    <h2>Lista de Pedidos</h2>
+    <table>
+        <tr>
+            <th>ID Pedido</th>
+            <th>ID Usuário</th>
+            <th>Data</th>
+            <th>Status</th>
+        </tr>
+        <tr>
+            <td>101</td>
+            <td>1</td>
+            <td>2024-02-24 14:30</td>
+            <td>PENDENTE</td>
+        </tr>
+        <tr>
+            <td>102</td>
+            <td>2</td>
+            <td>2024-02-24 15:00</td>
+            <td>APROVADA</td>
+        </tr>
+    </table>
+
+    <h2>Cadastrar Novo Pedido</h2>
+    <form action="salvar_pedido.php" method="POST">
+        <label>ID Usuário:</label>
+        <input type="number" name="usuario_id" required><br><br>
+
+        <label>Status:</label>
+        <select name="status">
+            <option value="PENDENTE">PENDENTE</option>
+            <option value="APROVADA">APROVADA</option>
+            <option value="REPROVADA">REPROVADA</option>
+        </select><br><br>
+
+        <button type="submit">Salvar</button>
+    </form>
+
+</body>
+</html>
