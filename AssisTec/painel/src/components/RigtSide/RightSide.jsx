@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./RightSide.css";
 import defaultProfilePic from "../../imgs/default_perfil.png";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const RightSide = () => {
   const [user, setUser] = useState({
@@ -21,6 +22,7 @@ const RightSide = () => {
 
   const [editMode, setEditMode] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     axios.get("http://localhost/Assistencia-Tecnica/AssisTec/api/perfil.php", { withCredentials: true })
@@ -42,16 +44,50 @@ const RightSide = () => {
     setSelectedFile(e.target.files[0]);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios.post("http://localhost/Assistencia-Tecnica/AssisTec/api/atualizar_perfil.php", user, { withCredentials: true })
-      .then(() => {
-        alert("Perfil atualizado com sucesso!");
-        setEditMode(false);
-        window.location.reload();
-      })
-      .catch(error => console.error("Erro ao atualizar perfil", error));
-  };
+
+    try {
+        const formData = new FormData();
+        formData.append("nomeUsuario", user.nomeUsuario);
+        formData.append("emailUsuario", user.emailUsuario);
+        formData.append("telefoneUsuario", user.telefoneUsuario);
+        formData.append("ruaUsuario", user.ruaUsuario);
+        formData.append("numeroUsuario", user.numeroUsuario);
+        formData.append("complementoUsuario", user.complementoUsuario);
+        formData.append("bairroUsuario", user.bairroUsuario);
+        formData.append("cidadeUsuario", user.cidadeUsuario);
+        formData.append("estadoUsuario", user.estadoUsuario);
+        formData.append("cepUsuario", user.cepUsuario);
+
+        // 🔑 Só envia a senha se o usuário digitou algo
+        if (user.senhaUsuario && user.senhaUsuario.trim() !== "") {
+            formData.append("senhaUsuario", user.senhaUsuario);
+        }
+
+        if (selectedFile) {
+            formData.append("fotoUsuario", selectedFile);
+        }
+
+        const response = await axios.post(
+            "http://localhost/Assistencia-Tecnica/AssisTec/api/atualizar_perfil.php",
+            formData,
+            { withCredentials: true }
+        );
+
+        if (response.data.error) {
+            alert("Erro ao atualizar perfil: " + response.data.error);
+        } else {
+            alert("Perfil atualizado com sucesso!");
+            setEditMode(false);
+            window.location.reload();
+        }
+    } catch (error) {
+        console.error("Erro ao atualizar perfil:", error);
+        alert("Erro ao atualizar perfil. Verifique o console.");
+    }
+};
+
 
   const handleUpload = (e) => {
     e.preventDefault();
@@ -129,7 +165,22 @@ const RightSide = () => {
               <button className="remove-button" type="button" onClick={handleRemovePhoto}>Remover Foto</button>
               <input type="text" name="nomeUsuario" value={user.nomeUsuario || ""} onChange={handleChange} placeholder="Nome" />
               <input type="email" name="emailUsuario" value={user.emailUsuario || ""} onChange={handleChange} placeholder="E-mail" />
-              <input type="password" name="senhaUsuario" onChange={handleChange} placeholder="Nova Senha" />
+              <div className="password-container">
+                <input 
+                  type={showPassword ? "text" : "password"} 
+                  name="senhaUsuario" 
+                  value={user.senhaUsuario || ""} 
+                  onChange={handleChange} 
+                  placeholder="Nova Senha" 
+                />
+                <button 
+                  type="button" 
+                  className="toggle-password" 
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
               <input type="text" name="telefoneUsuario" value={user.telefoneUsuario || ""} onChange={handleChange} placeholder="Telefone" />
               <input type="text" name="ruaUsuario" value={user.ruaUsuario || ""} onChange={handleChange} placeholder="Rua" />
               <input type="text" name="numeroUsuario" value={user.numeroUsuario || ""} onChange={handleChange} placeholder="Número" />
