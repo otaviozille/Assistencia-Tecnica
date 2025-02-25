@@ -46,6 +46,7 @@
             <div class="card">🧾 Despesas: R$ 0 </div>
             <div class="card">📊 Gastos: R$ 0 </div>
             <div class="card">👤  Total de Usuarios:0 </div>
+            <button class="btn btn-primary mt-3" onclick="abrirPopup()">Ver Usuários</button>
         </div>
         <br>
     <button id="atualizarDados">Atualizar Dados</button> <!-- Botão para atualizar os dados -->
@@ -58,6 +59,66 @@
             </div>
         </div>
     </main>
+
+<!-- Botão para abrir o popup -->
+
+<!-- Popup Modal -->
+<div id="popupUsuarios" class="modal">
+    <div class="modal-content">
+        <span class="fechar" onclick="fecharPopup()">&times;</span>
+        <h3>Lista de Usuários</h3>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+             
+                <tbody>
+                    <?php include 'listar_usuarios.php'; ?>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Cadastrar Novo Usuário</h3>
+        <form action="salvar_usuario.php" method="POST" enctype="multipart/form-data">
+            <label>Nome:</label>
+            <input type="text" name="nomeUsuario" required><br><br>
+
+            <label>Email:</label>
+            <input type="email" name="emailUsuario" required><br><br>
+
+            <label>Senha:</label>
+            <input type="password" name="senhaUsuario" required><br><br>
+
+            <label>Nível:</label>
+            <select name="nivelUsuario">
+                <option value="Administrador">Administrador</option>
+                <option value="Usuário">Usuário</option>
+            </select><br><br>
+
+            <label>Ativo:</label>
+            <select name="ativoUsuario">
+                <option value="Sim">Sim</option>
+                <option value="Não">Não</option>
+            </select><br><br>
+
+            <label>Telefone:</label>
+            <input type="text" name="telefoneUsuario"><br><br>
+
+            <label>Endereço:</label>
+            <input type="text" name="ruaUsuario" placeholder="Rua">
+            <input type="text" name="numeroUsuario" placeholder="Número">
+            <input type="text" name="bairroUsuario" placeholder="Bairro">
+            <input type="text" name="cidadeUsuario" placeholder="Cidade">
+            <input type="text" name="estadoUsuario" placeholder="Estado">
+            <input type="text" name="cepUsuario" placeholder="CEP"><br><br>
+
+            <label>Foto:</label>
+            <input type="file" name="fotoUsuario"><br><br>
+
+            <button type="submit">Salvar Usuário</button>
+        </form>
+    </div>
+</div>
+
+
     <script src="/AssisTec/painel/script.js"></script>
 </body>
 </html>

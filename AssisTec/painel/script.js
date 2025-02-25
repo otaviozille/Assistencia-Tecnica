@@ -139,3 +139,11 @@ document.getElementById('toggleSidebar').addEventListener('click', function() {
     const sidebar = document.getElementById('sidebar');
     sidebar.classList.toggle('active'); // Adiciona ou remove a classe 'active'
 });
+
+function abrirPopup() {
+    document.getElementById("popupUsuarios").style.display = "flex";
+}
+
+function fecharPopup() {
+    document.getElementById("popupUsuarios").style.display = "none";
+}

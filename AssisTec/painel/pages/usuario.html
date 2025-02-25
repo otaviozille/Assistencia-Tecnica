@@ -7,20 +7,6 @@
     <link rel="stylesheet" href="/AssisTec/painel/style.css">
 </head>
 <body>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
 
     <nav class="sidebar">
         <h2>Sistema</h2>
@@ -28,7 +14,7 @@
             <li><a href="/AssisTec/painel/index.html">🏠 Home</a></li>
             <li><a href="/AssisTec/painel/pages/usuario.html">👤 Usuários</a></li>
             <li><a href="/AssisTec/painel/pages/relatorio.html">📊 Relatórios</a></li>
-            <li><a href="/AssisTec/painel/pages/pedidos.html">⚙️ Configurações</a></li>
+            <li><a href="/AssisTec/painel/pages/config.html">⚙️ Configurações</a></li>
         </ul>
     </nav>
 
@@ -40,52 +26,12 @@
             <span>👤 Nome Usuário</span>
         </div>
     </header>
-    
-        <h2>Lista de Usuários</h2>
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Nível</th>
-                <th>Telefone</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>João Silva</td>
-                <td>joao@email.com</td>
-                <td>Administrador</td>
-                <td>(11) 99999-9999</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Maria Souza</td>
-                <td>maria@email.com</td>
-                <td>Usuário</td>
-                <td>(11) 98888-8888</td>
-            </tr>
-        </table>
-    
-        <h2>Cadastrar Novo Usuário</h2>
-        <form action="salvar_usuario.php" method="POST">
-            <label>Nome:</label>
-            <input type="text" name="nomeUsuario" required><br><br>
-    
-            <label>Email:</label>
-            <input type="email" name="emailUsuario" required><br><br>
-    
-            <label>Senha:</label>
-            <input type="password" name="senhaUsuario" required><br><br>
-    
-            <label>Nível:</label>
-            <select name="nivelUsuario">
-                <option value="Administrador">Administrador</option>
-                <option value="Usuário">Usuário</option>
-            </select><br><br>
-    
-            <button type="submit">Salvar</button>
-        </form>
-    
-    </body>
-    </html>
-    
+
+    <main class="content">
+        <h1>Gerenciamento de Usuários</h1>
+        <button onclick="alert('Adicionar Usuário')">➕ Adicionar Usuário</button>
+    </main>
+
+    <script src="/AssisTec/painel/script.js"></script>
+</body>
+</html>
