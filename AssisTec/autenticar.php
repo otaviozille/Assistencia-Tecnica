@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 require_once("conexao.php");
@@ -22,3 +23,4 @@ if (count($result) > 0) {
     echo "<script>alert('Usuário ou senha incorretos!'); window.location.href = 'index.php';</script>";
 }
 ?>
+

@@ -1,3 +1,4 @@
+
 <?php
 
 if (session_status() == PHP_SESSION_NONE) {
@@ -21,3 +22,4 @@ try {
     die("❌ Erro ao conectar ao banco de dados: " . $e->getMessage());
 }
 ?>
+
