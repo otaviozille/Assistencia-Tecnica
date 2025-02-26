@@ -1,0 +1,126 @@
+.orders {
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    background: var(--glass);
+    border-radius: 1rem;
+    box-shadow: var(--boxShadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Centralizar o título "Pedidos" */
+.orders h2 {
+    color: var(--black);
+    margin-bottom: 1.5rem;
+    font-size: 24px;
+    text-align: center;
+    width: 100%;
+}
+
+/* Container da tabela com rolagem horizontal */
+.orders-table-container {
+    width: 100%;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: auto;
+    border-radius: 10px;
+}
+
+/* Tabela responsiva */
+.orders table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    min-width: 600px; /* Mantém a estrutura em telas pequenas */
+}
+
+/* Cabeçalho fixo para rolagem */
+.orders table thead {
+    background: var(--purple);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+/* Células da tabela */
+.orders table th, 
+.orders table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--gray);
+    white-space: nowrap; /* Evita quebra de linha */
+}
+
+/* Quebra de texto apenas se for necessário */
+.orders table td {
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Hover na tabela */
+.orders table tbody tr:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* RESPONSIVIDADE */
+
+/* Ajuste para tablets */
+@media screen and (max-width: 768px) {
+    .orders {
+        padding: 1rem;
+    }
+
+    .orders-table-container {
+        max-height: 350px;
+    }
+
+    .orders table {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+    }
+
+    .orders table thead {
+        display: block;
+        width: 100%;
+    }
+
+    .orders table tbody {
+        display: block;
+        width: 100%;
+    }
+
+    .orders table th, 
+    .orders table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+/* Ajuste para celulares pequenos */
+@media screen and (max-width: 480px) {
+    .orders {
+        padding: 0.5rem;
+    }
+
+    .orders-table-container {
+        max-height: 300px;
+    }
+
+    .orders table {
+        font-size: 12px;
+        min-width: 500px;
+    }
+
+    .orders table th, 
+    .orders table td {
+        font-size: 12px;
+        padding: 6px;
+    }
+}

@@ -7,11 +7,36 @@
   padding: 1rem;
   position: relative;
   cursor: pointer;
+  justify-content: space-between; /* Ajusta o alinhamento */
+  
 }
 .CompactCard:hover {
   box-shadow: none !important;
 }
+/* Ajuste do número no Card Fechado */
+.detail > span:nth-child(2) {
+  font-size: 24px; /* Aumenta o tamanho da fonte */
+  font-weight: bold;
+  white-space: nowrap; /* Impede quebra de linha */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%; /* Garante que não ultrapasse os limites */
+}
+/* Descrição abaixo do número */
+.detail > span:nth-child(3) {
+  font-size: 14px; /* Ajusta o tamanho da descrição */
+  white-space: nowrap; /* Impede quebras de linha erradas */
+  text-align: right;
+}
 
+/* Ajuste do Detalhe do Card */
+.detail {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}
 /* radial bar */
 .radialBar {
   flex: 1 1;

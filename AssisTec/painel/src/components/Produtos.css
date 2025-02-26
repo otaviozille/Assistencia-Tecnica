@@ -1,0 +1,155 @@
+/* Estilização geral */
+.produtos {
+    width: 100%;
+    height: calc(100vh - 4rem);
+    padding: 1.5rem;
+    background: var(--glass);
+    border-radius: 1rem;
+    box-shadow: var(--boxShadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Barra de pesquisa e filtros */
+.filtros {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+.filtros input, .filtros select {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background: #fff;
+}
+
+/* Container de produtos */
+.produtos-container {
+    flex: 1;
+    width: 100%;
+    max-width: 1200px;
+    max-height: 60vh;
+    overflow-y: auto;
+    overflow-x: hidden; /* Impede rolagem horizontal */
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+/* Estilização da barra de rolagem (só aparece quando necessário) */
+.produtos-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.produtos-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.produtos-container::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+
+.produtos-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Grid de produtos responsivo */
+.produtos-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    overflow: hidden;
+    background: transparent;
+}
+
+/* Estilização dos cards de produtos */
+.produto-card {
+    background: var(--purple);
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: var(--boxShadow);
+    text-align: center;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.produto-card:hover {
+    transform: scale(1.05);
+}
+
+.produto-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.produto-card h3 {
+    color: white;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .produtos {
+        padding: 1rem;
+    }
+
+    .filtros {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .produtos-container {
+        max-height: 70vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .produtos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    .produto-card img {
+        height: 120px;
+    }
+
+    .produto-card h3 {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .produtos {
+        padding: 0.5rem;
+    }
+
+    .filtros {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .produtos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+
+    .produto-card img {
+        height: 100px;
+    }
+
+    .produto-card h3 {
+        font-size: 0.8rem;
+    }
+}

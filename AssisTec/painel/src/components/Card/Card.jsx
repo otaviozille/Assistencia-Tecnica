@@ -7,7 +7,6 @@ import { UilTimes } from "@iconscout/react-unicons";
 import Chart from "react-apexcharts";
 
 // parent Card
-
 const Card = (props) => {
   const [expanded, setExpanded] = useState(false);
   return (
@@ -36,15 +35,15 @@ function CompactCard({ param, setExpanded }) {
     >
       <div className="radialBar">
         <CircularProgressbar
-          value={param.barValue}
-          text={`${param.barValue}%`}
+          value={param.barValue || 0}
+          text={`${param.barValue || 0}%`}
         />
         <span>{param.title}</span>
       </div>
       <div className="detail">
         <Png />
-        <span>${param.value}</span>
-        <span>Last 24 hours</span>
+        <span>{param.value}</span>
+        
       </div>
     </motion.div>
   );
@@ -55,52 +54,43 @@ function ExpandedCard({ param, setExpanded }) {
   const data = {
     options: {
       chart: {
-        type: "area",
+        type: param.title === "Produtos Vendidos" ? "bar" : "area",
         height: "auto",
       },
-
-      dropShadow: {
-        enabled: false,
-        enabledOnSeries: undefined,
-        top: 0,
-        left: 0,
-        blur: 3,
-        color: "#000",
-        opacity: 0.35,
-      },
-
       fill: {
         colors: ["#fff"],
         type: "gradient",
       },
       dataLabels: {
-        enabled: false,
+        enabled: true, // ✅ Exibe os valores diretamente nas barras
       },
       stroke: {
         curve: "smooth",
         colors: ["white"],
       },
       tooltip: {
+        enabled: true,
         x: {
-          format: "dd/MM/yy HH:mm",
+          show: true,
+          formatter: function (value, { dataPointIndex }) {
+            return param.categories ? param.categories[dataPointIndex] : value; // ✅ Exibe o nome correto ao passar o mouse
+          }
         },
+        y: {
+          formatter: function (value) {
+            return `${value} vendas`; // ✅ Exibe "2 vendas" ao passar o mouse
+          }
+        }
       },
       grid: {
         show: true,
       },
       xaxis: {
-        type: "datetime",
-        categories: [
-          "2018-09-19T00:00:00.000Z",
-          "2018-09-19T01:30:00.000Z",
-          "2018-09-19T02:30:00.000Z",
-          "2018-09-19T03:30:00.000Z",
-          "2018-09-19T04:30:00.000Z",
-          "2018-09-19T05:30:00.000Z",
-          "2018-09-19T06:30:00.000Z",
-        ],
+        type: "category",
+        categories: param.categories || [], // ✅ Agora mostra os nomes corretamente no eixo X
       },
     },
+    series: param.series || [{ name: "Produtos", data: [0] }],
   };
 
   return (
@@ -115,13 +105,16 @@ function ExpandedCard({ param, setExpanded }) {
       <div style={{ alignSelf: "flex-end", cursor: "pointer", color: "white" }}>
         <UilTimes onClick={setExpanded} />
       </div>
-        <span>{param.title}</span>
+      <span>{param.title}</span>
       <div className="chartContainer">
-        <Chart options={data.options} series={param.series} type="area" />
+        <Chart options={data.options} series={data.series} type={param.title === "Produtos Vendidos" ? "bar" : "area"} />
       </div>
-      <span>Last 24 hours</span>
+      
     </motion.div>
   );
 }
+
+
+
 
 export default Card;

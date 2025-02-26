@@ -19,16 +19,22 @@ th {
   border-radius: 9px;
 }
 
-.Details {
-  color: #00b5ff !important;
+.TableContainer {
+  max-height: 300px; /* 🔧 Mantém a altura fixa para 5 pedidos */
+  overflow-y: auto;  /* 🔧 Adiciona barra de rolagem quando necessário */
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 @media screen and (max-width: 1200px) {
   .Table {
-    width: 170%;
-    margin-top: 2rem;
+    width: 100%; /* 🔧 Mantém o layout correto */
+    max-width: 90vw; /* 🔧 Evita que a tabela ultrapasse a tela */
+    overflow-x: auto;
+    margin-top: 1rem;
   }
 }
+
 
 
 @media screen and (max-width: 768px) {

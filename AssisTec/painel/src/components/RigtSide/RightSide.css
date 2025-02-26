@@ -1,11 +1,16 @@
 .RightSide {
     display: flex;
     flex-direction: column;
-    width: 95%;
-    justify-content: space-evenly;
+    align-items: center; /* ✅ Mantém os elementos alinhados */
+    justify-content: flex-start; /* ✅ Alinha corretamente no topo */
+    position: absolute;
+    top: 50%;
+    right: 2%;
+    transform: translateY(-50%);
+    width: 280px;
     padding: 20px;
     text-align: center;
-}
+}   
 
 .profile-container {
     display: flex;
@@ -167,10 +172,15 @@
     background-color: #c82333;
 }
 
+/* Ajuste para telas menores */
 @media screen and (max-width: 1200px) {
     .RightSide {
-        justify-content: flex-start;
-        margin-top: 3rem;
+        position: relative;
+        top: auto;
+        right: auto;
+        transform: none;
+        width: 100%;
+        margin-top: 2rem;
     }
 }
 

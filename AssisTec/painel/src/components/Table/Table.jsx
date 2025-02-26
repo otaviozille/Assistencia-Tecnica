@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -6,81 +6,76 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import axios from "axios";
 import "./Table.css";
 
-function createData(name, trackingId, date, status) {
-  return { name, trackingId, date, status };
-}
-
-const rows = [
-  createData("Lasania Chiken Fri", 18908424, "2 March 2022", "Approved"),
-  createData("Big Baza Bang ", 18908424, "2 March 2022", "Pending"),
-  createData("Mouth Freshner", 18908424, "2 March 2022", "Approved"),
-  createData("Cupcake", 18908421, "2 March 2022", "Delivered"),
-];
-
-
-const makeStyle=(status)=>{
-  if(status === 'Approved')
-  {
-    return {
-      background: 'rgb(145 254 159 / 47%)',
-      color: 'green',
-    }
+const makeStyle = (status) => {
+  if (status === "Concluído") {
+    return { background: "rgb(145 254 159 / 47%)", color: "green" };
+  } else if (status === "Pendente") {
+    return { background: "#ffadad8f", color: "red" };
+  } else {
+    return { background: "#59bfff", color: "white" };
   }
-  else if(status === 'Pending')
-  {
-    return{
-      background: '#ffadad8f',
-      color: 'red',
-    }
-  }
-  else{
-    return{
-      background: '#59bfff',
-      color: 'white',
-    }
-  }
-}
+};
 
 export default function BasicTable() {
+  const [rows, setRows] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost/Assistencia-Tecnica/AssisTec/api/get_pedidos.php")
+      .then((response) => {
+        setRows(response.data);
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar pedidos:", error);
+      });
+  }, []);
+
   return (
-      <div className="Table">
+    <div className="Table">
       <h3>Pedidos Recentes</h3>
-        <TableContainer
-          component={Paper}
-          style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
-        >
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Produtos</TableCell>
-                <TableCell align="left">quantidade</TableCell>
-                <TableCell align="left">Data</TableCell>
-                <TableCell align="left">Status</TableCell>
-                <TableCell align="left"></TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody style={{ color: "white" }}>
-              {rows.map((row) => (
-                <TableRow
-                  key={row.name}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    {row.name}
-                  </TableCell>
-                  <TableCell align="left">{row.trackingId}</TableCell>
-                  <TableCell align="left">{row.date}</TableCell>
+      <TableContainer
+      component={Paper}
+      className="TableContainer"
+      style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
+      >
+
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Produto</TableCell>
+              <TableCell align="left">Quantidade</TableCell>
+              <TableCell align="left">Data</TableCell>
+              <TableCell align="left">Status</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.length > 0 ? (
+              rows.map((row, index) => (
+                <TableRow key={index}>
+                  <TableCell>{row.nome_produto}</TableCell>
+                  <TableCell align="left">{row.quantidade}</TableCell>
                   <TableCell align="left">
-                    <span className="status" style={makeStyle(row.status)}>{row.status}</span>
+                    {new Date(row.data_pedido).toLocaleDateString("pt-BR")}
                   </TableCell>
-                  
+                  <TableCell align="left">
+                    <span className="status" style={makeStyle(row.status)}>
+                      {row.status}
+                    </span>
+                  </TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={4} align="center">
+                  Nenhum pedido encontrado.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </div>
   );
 }
