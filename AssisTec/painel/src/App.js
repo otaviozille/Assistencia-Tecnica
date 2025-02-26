@@ -4,8 +4,8 @@ import MainDash from './components/MainDash/MainDash';
 import RightSide from './components/RigtSide/RightSide';
 import Sidebar from './components/Sidebar';
 import Orders from './components/Orders/Orders';
-import Produtos from "./components/Produtos"; // Importe a página de produtos
-import ProdutoDetalhes from "./components/ProdutoDetalhes"; // Importe os detalhes do produto
+import Produtos from "./components/produtos/Produtos"; // Importe a página de produtos
+import ProdutoDetalhes from "./components/produtos/ProdutoDetalhes"; // Importe os detalhes do produto
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 
