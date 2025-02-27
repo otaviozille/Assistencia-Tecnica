@@ -29,7 +29,7 @@ export const SidebarData = [
   },
   {
     icon: UilChart,
-    heading: "Analytics",
+    heading: "Relatórios",
   },
   
 ];

@@ -17,7 +17,7 @@ if (count($result) > 0) {
     $_SESSION['nome'] = $result[0]['nomeUsuario'];
     $_SESSION['nivel'] = $result[0]['nivelUsuario'];
 
-    header("Location: http://localhost:3000/dashboard");
+    header("Location: http://localhost:3000");
     exit();
 } else {
     echo "<script>alert('Usuário ou senha incorretos!'); window.location.href = 'index.php';</script>";

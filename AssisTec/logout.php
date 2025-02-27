@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 
->>>>>>> db2ff4c8a9e9835d579be001126c09e2d2ef6639
 <?php
 session_start();
 session_unset();
@@ -26,9 +23,3 @@ header("Expires: 0");
 // Retorna JSON indicando sucesso
 header('Content-Type: application/json');
 echo json_encode(["logout" => true]);
-<<<<<<< HEAD
-exit();
-=======
-exit();
-
->>>>>>> db2ff4c8a9e9835d579be001126c09e2d2ef6639
